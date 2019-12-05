@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions targetNamespace="http://www.ebi.ac.uk/soaplab/emboss4/services/display.seealso" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://www.ebi.ac.uk/soaplab/emboss4/services/display.seealso" xmlns:intf="http://www.ebi.ac.uk/soaplab/emboss4/services/display.seealso" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://www.ebi.ac.uk/soaplab/emboss4/services/display.seealso" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="runAndWaitFor">
+    <complexType>
+     <sequence>
+      <element name="seealso" type="impl:Tseealso"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="Tseealso">
+    <sequence>
+     <element maxOccurs="1" minOccurs="0" name="search" type="xsd:string"/>
+     <element maxOccurs="1" minOccurs="0" name="explode" type="xsd:boolean"/>
+     <element maxOccurs="1" minOccurs="0" name="emboss" type="xsd:boolean"/>
+     <element maxOccurs="1" minOccurs="0" name="embassy" type="xsd:boolean"/>
+     <element maxOccurs="1" minOccurs="0" name="showembassy" type="xsd:string"/>
+     <element maxOccurs="1" minOccurs="0" name="html" type="xsd:string"/>
+     <element maxOccurs="1" minOccurs="0" name="groups" type="xsd:boolean"/>
+     <element maxOccurs="1" minOccurs="0" name="colon" type="xsd:boolean"/>
+    </sequence>
+   </complexType>
+   <element name="runAndWaitForResponse">
+    <complexType>
+     <sequence>
+      <element name="seealsoResult" type="impl:TseealsoResult"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="TseealsoResult">
+    <sequence>
+     <element maxOccurs="1" minOccurs="0" name="report" type="xsd:string"/>
+     <element maxOccurs="1" minOccurs="0" name="detailed_status" type="xsd:long"/>
+     <element maxOccurs="1" minOccurs="0" name="outfile" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="TSoaplabException">
+    <sequence/>
+   </complexType>
+   <element name="fault" type="impl:TSoaplabException"/>
+   <element name="createAndRun">
+    <complexType>
+     <sequence>
+      <element name="seealso" type="impl:Tseealso"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="createAndRunResponse">
+    <complexType>
+     <sequence>
+      <element name="jobid" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="waitFor">
+    <complexType>
+     <sequence>
+      <element name="jobid" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="waitForResponse">
+    <complexType/>
+   </element>
+   <element name="getStatus">
+    <complexType>
+     <sequence>
+      <element name="jobid" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getStatusResponse">
+    <complexType>
+     <sequence>
+      <element name="status" type="impl:Tstatus"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="Tstatus">
+    <sequence>
+     <element name="asString" nillable="true" type="xsd:string"/>
+     <element name="completed" type="xsd:boolean"/>
+     <element name="description" nillable="true" type="xsd:string"/>
+     <element name="detailed" nillable="true" type="xsd:string"/>
+     <element name="erroneous" type="xsd:boolean"/>
+     <element name="inProgress" type="xsd:boolean"/>
+     <element name="successful" type="xsd:boolean"/>
+    </sequence>
+   </complexType>
+   <element name="getResults">
+    <complexType>
+     <sequence>
+      <element name="jobid" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getResultsResponse">
+    <complexType>
+     <sequence>
+      <element name="seealsoResult" type="impl:TseealsoResult"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <message name="getResultsRequest">
+
+      <part element="impl:getResults" name="parameters"/>
+
+   </message>
+
+   <message name="runAndWaitForResponse">
+
+      <part element="impl:runAndWaitForResponse" name="parameters"/>
+
+   </message>
+
+   <message name="createAndRunRequest">
+
+      <part element="impl:createAndRun" name="parameters"/>
+
+   </message>
+
+   <message name="waitForResponse">
+
+      <part element="impl:waitForResponse" name="parameters"/>
+
+   </message>
+
+   <message name="SoaplabException">
+
+      <part element="impl:fault" name="fault"/>
+
+   </message>
+
+   <message name="waitForRequest">
+
+      <part element="impl:waitFor" name="parameters"/>
+
+   </message>
+
+   <message name="getResultsResponse">
+
+      <part element="impl:getResultsResponse" name="parameters"/>
+
+   </message>
+
+   <message name="createAndRunResponse">
+
+      <part element="impl:createAndRunResponse" name="parameters"/>
+
+   </message>
+
+   <message name="getStatusResponse">
+
+      <part element="impl:getStatusResponse" name="parameters"/>
+
+   </message>
+
+   <message name="getStatusRequest">
+
+      <part element="impl:getStatus" name="parameters"/>
+
+   </message>
+
+   <message name="runAndWaitForRequest">
+
+      <part element="impl:runAndWaitFor" name="parameters"/>
+
+   </message>
+
+   <portType name="display__seealso">
+
+      <operation name="runAndWaitFor">
+
+         <input message="impl:runAndWaitForRequest" name="runAndWaitForRequest"/>
+
+         <output message="impl:runAndWaitForResponse" name="runAndWaitForResponse"/>
+
+         <fault message="impl:SoaplabException" name="SoaplabException"/>
+
+      </operation>
+
+      <operation name="createAndRun">
+
+         <input message="impl:createAndRunRequest" name="createAndRunRequest"/>
+
+         <output message="impl:createAndRunResponse" name="createAndRunResponse"/>
+
+         <fault message="impl:SoaplabException" name="SoaplabException"/>
+
+      </operation>
+
+      <operation name="waitFor">
+
+         <input message="impl:waitForRequest" name="waitForRequest"/>
+
+         <output message="impl:waitForResponse" name="waitForResponse"/>
+
+         <fault message="impl:SoaplabException" name="SoaplabException"/>
+
+      </operation>
+
+      <operation name="getStatus">
+
+         <input message="impl:getStatusRequest" name="getStatusRequest"/>
+
+         <output message="impl:getStatusResponse" name="getStatusResponse"/>
+
+         <fault message="impl:SoaplabException" name="SoaplabException"/>
+
+      </operation>
+
+      <operation name="getResults">
+
+         <input message="impl:getResultsRequest" name="getResultsRequest"/>
+
+         <output message="impl:getResultsResponse" name="getResultsResponse"/>
+
+         <fault message="impl:SoaplabException" name="SoaplabException"/>
+
+      </operation>
+
+   </portType>
+
+   <binding name="display__seealsoSoapBinding" type="impl:display__seealso">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <operation name="runAndWaitFor">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <input name="runAndWaitForRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </input>
+
+         <output name="runAndWaitForResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </output>
+
+         <fault name="SoaplabException">
+
+            <wsdlsoap:fault name="SoaplabException" use="literal"/>
+
+         </fault>
+
+      </operation>
+
+      <operation name="createAndRun">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <input name="createAndRunRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </input>
+
+         <output name="createAndRunResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </output>
+
+         <fault name="SoaplabException">
+
+            <wsdlsoap:fault name="SoaplabException" use="literal"/>
+
+         </fault>
+
+      </operation>
+
+      <operation name="waitFor">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <input name="waitForRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </input>
+
+         <output name="waitForResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </output>
+
+         <fault name="SoaplabException">
+
+            <wsdlsoap:fault name="SoaplabException" use="literal"/>
+
+         </fault>
+
+      </operation>
+
+      <operation name="getStatus">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <input name="getStatusRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </input>
+
+         <output name="getStatusResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </output>
+
+         <fault name="SoaplabException">
+
+            <wsdlsoap:fault name="SoaplabException" use="literal"/>
+
+         </fault>
+
+      </operation>
+
+      <operation name="getResults">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <input name="getResultsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </input>
+
+         <output name="getResultsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </output>
+
+         <fault name="SoaplabException">
+
+            <wsdlsoap:fault name="SoaplabException" use="literal"/>
+
+         </fault>
+
+      </operation>
+
+   </binding>
+
+   <service name="seealsoService">
+
+      <port binding="impl:display__seealsoSoapBinding" name="display__seealso">
+
+         <wsdlsoap:address location="http://www.ebi.ac.uk/soaplab/emboss4/services/"/>
+
+      </port>
+
+   </service>
+
+</definitions>

@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<definitions name="LocationByZip"
+             targetNamespace="urn:LocationByZip"
+             xmlns:typens="urn:LocationByZip"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+             xmlns="http://schemas.xmlsoap.org/wsdl/">
+
+			 
+  <types>
+    <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" 
+                targetNamespace="urn:LocationByZip">
+				
+      <xsd:complexType name="LocationByZipResult">
+        <xsd:all>
+          <xsd:element name="state" type="xsd:string"/>
+		  <xsd:element name="latitude" type="xsd:string"/>
+		  <xsd:element name="longitude" type="xsd:string"/>
+        </xsd:all>
+      </xsd:complexType>
+	  
+	  
+      <xsd:complexType name="DistanceByZipResult">
+        <xsd:all>
+          <xsd:element name="miles" type="xsd:string"/>
+		  <xsd:element name="kilometers" type="xsd:string"/>		 
+        </xsd:all>
+      </xsd:complexType>	  
+	  
+    </xsd:schema>
+  </types>
+  
+  			 
+			 
+  <message name="getLocationByZip">
+    <part name="zip" type="xsd:string"/>	
+  </message>
+
+  <message name="getLocationByZipResponse">
+    <part name="return" type="typens:LocationByZipResult"/>            
+  </message>
+
+  
+  
+  
+  <message name="getDistanceByZip">
+    <part name="zip1" type="xsd:string"/>
+    <part name="zip2" type="xsd:string"/>	
+  </message>
+
+  <message name="getDistanceByZipResponse">
+    <part name="return" type="typens:DistanceByZipResult"/> 
+  </message>
+  
+  
+  
+  <portType name="LocationByZipPort">
+
+    <operation name="getLocationByZip">
+      <input message="typens:getLocationByZip"/>
+      <output message="typens:getLocationByZipResponse"/>
+    </operation>
+
+    <operation name="getDistanceByZip">
+      <input message="typens:getDistanceByZip"/>
+      <output message="typens:getDistanceByZipResponse"/>
+    </operation>
+
+  </portType>
+
+
+  <binding name="LocationByZipBinding" type="typens:LocationByZipPort">
+    <soap:binding style="rpc"
+                  transport="http://schemas.xmlsoap.org/soap/http"/>
+
+    <operation name="getLocationByZip">
+      <soap:operation soapAction="urn:LocationByZipAction"/>
+      <input>
+        <soap:body use="encoded"
+                   namespace="urn:LocationByZip"
+                   encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded"
+                   namespace="urn:LocationByZip"
+                   encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+
+    <operation name="getDistanceByZip">
+      <soap:operation soapAction="urn:LocationByZipAction"/>
+      <input>
+        <soap:body use="encoded"
+                   namespace="urn:LocationByZip"
+                   encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded"
+                   namespace="urn:LocationByZip"
+                   encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+  </binding>
+
+  <!-- Endpoint for flash-db LocationByZip -->
+  <service name="LocationByZipService">
+   <documentation>Returns the latitude and Longitude of any Zip code in the US.  Also calculates the distance between zip codes.</documentation>
+    <port name="LocationByZipPort" binding="typens:LocationByZipBinding">
+      <soap:address location="http://www.flash-db.com/services/ws/locationByZip.php"/>
+    </port>
+  </service>
+</definitions>
